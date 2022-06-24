@@ -11,18 +11,18 @@ ip = '18.157.144.214'
 
 def banner():
     os.system('cls||clear')
-    print('''
+    print('''                   CRACK BY iPAFF
               HH   █H  E████EE ██   ██     
               ██   ██  ██       ██ ██         
               ███H███  ██E█      XXX        
               ██   ██  ██       ██ ██       
               H█   HH  E███EE  ██   ██   
-                 Fix  Build v2.22
+                 Fix  Build v2.31
        P█████   █████  ███    █N E███EE  █L
        ██   ██ ██   █A ████   ██ ██      ██   
-       █████P  ███A███ ██ █   ██ ██E█    ██     
+       █P███P  ███A███ ██ █   ██ ██E█    ██     
        ██      ██   ██ ██   █ ██ ██      ██     
-       ██      █A   ██ █N   ████ E███EE  L████L''')
+       P█      █A   ██ █N   ████ E███EE  L████L''')
 
 def sendhex(ip, token, hex):
     try:
@@ -42,8 +42,7 @@ def sendhex(ip, token, hex):
             i += 1
             time.sleep(0.01)
             sock.send(bytes.fromhex(token))
-            for _ in range(4):
-                sock.send(bytes.fromhex(hex))
+            sock.send(bytes.fromhex(hex))
             print(f' {i} - Пакеты |  {tt}  |  [ CNTL + Z - Завершить ]')
         except:
             sock.connect((ip, 2222))
@@ -78,8 +77,8 @@ def times():
 def menu():
     global s, ip, token
     banner()
-    print("  >Created by t.me/CreatHex | coder: iPaff + Flocker<")
-    print(" [1] 5k xp \n [2] KD menu \n [3] lvl menu \n [4] Сustom hex \n [5] Ban wish 1005 \n [6] Medal 2021 menu \n [7] 518xp full arms \n [8] Unvisible NickName \n [9] Full WWWWW NickName \n [10] Exchange 10Gold to 100Silver \n>[11] Unlimited online account (Private) \n\n>[0] Edit configuration (Ticket+iP) \n>>[55 = exit, CTRL + Z = Crach]")
+    print("            >Created by t.me/CreatHex<")
+    print(" [1] 5k xp \n [2] KD menu \n [3] lvl menu \n [4] Сustom hex \n [5] Ban wish 1005 \n [6] Medal 2021 menu \n [7] 518xp full arms \n [8] Unvisible NickName \n [9] Full WWWWW NickName \n [10] Unlimited online account \n [11] Exchange 10Gold to 100Silver \n\n>[0] Edit configuration (Ticket+iP) \n>>[55 = exit, CTRL + Z = Crach]")
     choice = input("\n >> ")
     while choice not in mn:
         print("Ты инвалид или цифры не понимаешь?")
@@ -299,11 +298,11 @@ def menu():
         sendhex(ip, token, '0000005B0A2433353564333336322D336638332D346566312D623033622D6232313330663666353831621213506C6179657252656D6F7465536572766963651A0D736574506C617965724E616D65220F1A0D0A0B20575757575757575757575757575757575757575757575757575757202E0A')
 
     if choice == "10":
-        sendhex(ip, token, '000000690A2434396138643462382D306266642D346230342D393034632D6533306365656365626334641216496E76656E746F727952656D6F7465536572766963651A0F67657452656369706553746174757322181A160A145245434950455F44524F505F4F4E5F5052495A450000006D0A2433346561633530302D386431622D343435632D396564352D3362386463633863316435331216496E76656E746F727952656D6F7465536572766963651A0D6578656375746552656369706522111A0F0A0D45584348414E47455F474F4C442209120708661D000020412200000AF09F90BEF09D95B3F09D9686F09D9691F09D9691F09D9694F09D969CF09D968AF09D9693F09F8E830A')
-    
-    if choice == "11":
         sendhex(ip, token, '000000530a2462623634303038352d346635392d343235342d613130302d30666230343165623631393012184d617463686d616b696e6752656d6f7465536572766963651a11676574496e7669746573546f4c6f626279')
 
+    if choice == "11":
+        sendhex(ip, token, '000000690A2434396138643462382D306266642D346230342D393034632D6533306365656365626334641216496E76656E746F727952656D6F7465536572766963651A0F67657452656369706553746174757322181A160A145245434950455F44524F505F4F4E5F5052495A450000006D0A2433346561633530302D386431622D343435632D396564352D3362386463633863316435331216496E76656E746F727952656D6F7465536572766963651A0D6578656375746552656369706522111A0F0A0D45584348414E47455F474F4C442209120708661D000020412200000AF09F90BEF09D95B3F09D9686F09D9691F09D9691F09D9694F09D969CF09D968AF09D9693F09F8E830A')
+    
     if choice == "55":
         banner()
         sys.exit("          Спасибо за использования панели")
@@ -337,6 +336,5 @@ os.system('cls||clear')
 banner()
 print("                     cfg upload")
 print("                   t.me/CreatHex")
-checktoken(token)
 time.sleep(0.32)
 menu()
