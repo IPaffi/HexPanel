@@ -7,7 +7,6 @@ mn = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "55", "0", "00"]
 lm = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "0"]
 km = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "0"]
 omm = ["1", "2", "3", "4", "5", "0"]
-ip = '18.157.144.214'
 
 def banner():
     os.system('cls||clear')
@@ -17,7 +16,7 @@ def banner():
               ███H███  ██E█      XXX        
               ██   ██  ██       ██ ██       
               H█   HH  E███EE  ██   ██   
-                 Fix  Build v2.31
+                   Build v2.32
        P█████   █████  ███    █N E███EE  █L
        ██   ██ ██   █A ████   ██ ██      ██   
        █P███P  ███A███ ██ █   ██ ██E█    ██     
@@ -47,22 +46,6 @@ def sendhex(ip, token, hex):
         except:
             sock.connect((ip, 2222))
 
-
-def checktoken(token):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((ip, 2222))
-    s.send(bytes.fromhex(token))
-    s.send(bytes.fromhex(token))
-    o = s.recv(1024).decode("utf-8", errors="ignore")
-    if o[3] == '(':
-        s.close()
-    else:
-        banner()
-        try:
-            with open('config.py', 'w') as f:pass
-        except:pass
-        sys.exit(' >token invalid! Pls try restart panel and change token<')
-
 def times():
     global s
     global tt
@@ -85,29 +68,24 @@ def menu():
         choice = input("\n >> ")
 
     if choice == "0":
+        os.system('cls||clean')
         banner()
-        print("Set new cfg")
-        z = input("Your Token >> ")
-        if z == "" or z == " ":
-            banner()
-            print("        >Не вводите пробел, тут это не работает<")
-            time.sleep(2)
-            menu() 
-        z = z.replace('  ', '').encode("utf-8").hex()
-        token = z
-        checktoken(token)
+        print('Set new cfg')
+        ip = input('type new iP >> ')
+        token = input('type new token >> ')
         with open('config.py', 'w') as f:pass
         with open('config.py', 'w') as f:
-            f.write(f'\ntoken = "{token}"')
+            f.write(f'ip = "{ip}"\ntoken = "{token}"')
             f.close()
-        from config import token
+        from config import ip, token
+        os.system('cls||clear')
         banner()
-        print('                   cfg updated')
-        print('                  t.me/CreatHex')
-        time.sleep(0.4)
+        print('              cfg updated')
+        print('             t.me/CreatHex')
+        time.sleep(0.5)
         banner()
         menu()
-    
+
     if choice == "1":
         sendhex(ip, token, '0000005f0a2464636563333165612d313133642d343138382d623739342d3464656562396630666164651218506c61796572537461747352656d6f7465536572766963651a0a73746f72655374617473220f120d0a086c6576656c5f787010f7272200F09FA7AA48616C6C6F776565205850205072656D69756DF09F8E8322002200')
 
@@ -308,30 +286,22 @@ def menu():
         sys.exit("          Спасибо за использования панели")
 
 try:
-    from config import token
+    from config import ip, token
 except:
     banner()
-    print("    >Как получить токен на 0.19.3 уже у меня в тг<")
-    print("                   t.me/CreatHex")
-    z = input("Your Token >> ")
-    while z == "" or z == " ":
-        banner()
-        print("       >Не вводите пробел, тут это не работает<")
-        z = input("Your Token >> ")
-    print(' Please wait, checking token!')
-    checktoken(token)
-    z = z.replace('  ', '').encode("utf-8").hex()
-    token = z
+    print('Set server to connect')
+    ip = input('iP server (no :2222) >> ')
+    token = input('Your token >> ')
     with open('config.py', 'w') as f:
-        f.write(f'\ntoken = "{token}"')
+        f.write(f'ip = "{ip}"\ntoken = "{token}"')
         f.close()
+    os.system('cls||clear')
     banner()
-    print("                   cfg updated")
-    print("                  t.me/CreatHex")
-    time.sleep(0.23)
-    menu()
+    print('              cfg updated')
+    print('             t.me/CreatHex')
+    time.sleep(2)
 
-from config import token
+from config import ip, token
 os.system('cls||clear')
 banner()
 print("                     cfg upload")
