@@ -14,7 +14,7 @@ def banner():
                 ███H███  ██E█      XXX
                 ██   ██  ██       ██ █X
                 H█   HH  E███EE  X█   ██
-                    Fix Build v2.34
+                     Build v2.34
        P███P█   A█████   ██N    █N  E███EE  █L
        ██   ██  ██   █A  ████   ██  ██      ██
        █P███P   ███A███  ██ █   ██  ██E█    ██
