@@ -89,14 +89,14 @@ def menu():
     global s, ip, token
     banner()
     print("              >Created by t.me/CreatHex<")
-    print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Rick ban) \n [5] Unvisible NickName \n [6] lvl menu (Rick ban) \n [7] Full WWWWW NickName \n [8] Unlimited online account \n [9] 518xp full arms (Rick ban) \n [10] Exchange 10Gold to 100Silver \n\n>[0] Edit iP \n>[00] Edit Token \n>[000] Check Token \n>>[55 = exit, CTRL + Z = Crach]")
+    print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Risk ban) \n [5] Unvisible NickName \n [6] lvl menu (Risk ban) \n [7] Full WWWWW NickName \n [8] Unlimited online account \n [9] 518xp full arms (Risk ban) \n [10] Exchange 10Gold to 100Silver \n\n>[0] Edit iP \n>[00] Edit Token \n>[000] Check Token \n>>[55 = exit, CTRL + Z = Crach]")
     choice = input(" >> ")
     while choice not in mn:
         print(" Invalid input numbers")
         time.sleep(0.5)
         banner()
         print("            >Created by t.me/CreatHex<")
-        print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Rick ban) \n [5] Unvisible NickName \n [6] lvl menu (Rick ban) \n [7] Full WWWWW NickName \n [8] Unlimited online account \n [9] 518xp full arms (Rick ban) \n [10] Exchange 10Gold to 100Silver \n\n>[0] Edit iP \n>[00] Edit Token \n>[000] Check Token \n>>[55 = exit, CTRL + Z = Crach]")
+        print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Risk ban) \n [5] Unvisible NickName \n [6] lvl menu (Risk ban) \n [7] Full WWWWW NickName \n [8] Unlimited online account \n [9] 518xp full arms (Risk ban) \n [10] Exchange 10Gold to 100Silver \n\n>[0] Edit iP \n>[00] Edit Token \n>[000] Check Token \n>>[55 = exit, CTRL + Z = Crach]")
         choice = input(" >> ")
 
     if choice == "0":
@@ -363,7 +363,7 @@ except:
     time.sleep(1)
     with open('config.py', 'w') as f:pass
     with open('config.py', 'w') as f:
-        f.write(f'token = "{token}"\n ip = "{ip}"')
+        f.write(f'token = "{token}"\n ip = '{ip}'')
         f.close()
 time.sleep(1)
 from config import ip, token
