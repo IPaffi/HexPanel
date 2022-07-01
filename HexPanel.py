@@ -361,9 +361,8 @@ except:
     token = input(' Enter token >> ')
     ip = input(" Enter ip >>")
     time.sleep(1)
-    with open('config.py', 'w') as f:pass
     with open('config.py', 'w') as f:
-        f.write(f'ip = "{ip}"\ntoken = "{token}"')
+        f.write(f'token = "{token}"\nip = "{ip}"')
         f.close()
 time.sleep(1)
 from config import ip, token
