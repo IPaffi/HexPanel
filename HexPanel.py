@@ -363,7 +363,7 @@ except:
     time.sleep(1)
     with open('config.py', 'w') as f:pass
     with open('config.py', 'w') as f:
-        f.write(f'token = "{token}"\n ip = '{ip}'')
+        f.write(f'ip = "{ip}"\ntoken = "{token}"')
         f.close()
 time.sleep(1)
 from config import ip, token
