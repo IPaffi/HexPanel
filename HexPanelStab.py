@@ -38,7 +38,7 @@ def menu():
     global s, ip, token
     banner()
     print("          Приветсвую вас, {}!".format(name))
-    time.sleep(100)
+    time.sleep(1)
     banner()
     print("          >Created by t.me/CreatHex<")
     print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Risk ban) \n [5] Unvisible NickName \n [6] lvl menu (Risk ban) \n [7] Full WWWWW NickName \n [8] Unlimited online account \n [9] 518xp full arms (Risk ban) \n [10] Exchange 10Gold to 100Silver \n\n>[0] Edit iP \n>[00] Edit Token \n>[000] Check Token \n>>[55 = exit, CTRL + Z = Crach]")
