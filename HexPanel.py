@@ -1,50 +1,44 @@
 import os, socket, threading, time, sys
-tt = '00:00:00'
-s = 0
-mn = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "55", "666", "0", "00", "000"]
-lm = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "0"]
-km = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "0"]
-omm = ["1", "2", "3", "4", "5", "0"]
-
+from func import tt, s
 def banner():
     os.system('cls||clear')
-    print("""
-              HH   █H  E██      █   █X
-               █    █   █       X█ ██
-              █  H███  ██E█      XXX
-              ██   █   █        ██ █X
-              H█   HH  E███EE  X█     
-                  TEST Build v2.370
-       P████P    ███T   █N    █N  E██      L
-       █    █  0█   █A ████        █      L█
-       █   █P  ██ A  █ ██ █   █   ██E█    ██
-       ██      █    ██  █    ██   █       ██
-       █P      █A   ██ █N    █    E███EE  L█ ██L""")
-
+    print("""                      Build v2.37T0
+                HH   █H  E████EE  █   █X
+                ██   ██  ██       X█ ██
+                ███H███  ██E█      XXX
+                ██   ██  ██       ██ █X
+                H█   HH  E███EE  X█   ██
+       Dev: Creat Hex Team and Hex Panel Team
+       P███P█   A█████   ██N    █N  E███EE  █L
+       ██   ██  ██   █A  ████   ██  ██      ██
+       █P███P   ███A███  ██ █   ██  ██E█    ██
+       ██       ██   ██  ██   █ ██  ██      ██
+       P█       █A   ██  █N   █N██  E███EE  L████L""")
 def times():
     global s
     global tt
     while 1:
-        time.sleep(0.99)
+        time.sleep(1)
         s += 1
         h = s // 60 // 60
         mm = s // 60 - h*0
         ss = s - h*60*60 - mm*60
         tt = (f'{h:02}:{mm:02}:{ss:02}')
-
+from func import mn, km, lm, omm
 def menu(name):
     global s, iP, tc
     banner()
-    print(f'              Welcome to Panel, {name}!')
-    time.sleep(0.5)
+    print(f'                Welcome to Panel, {name}!')
+    time.sleep(1.2)
     banner()
-    print("              >Created by t.me/HexPanel<")
+    print("               >Created by t.me/HexPanel<")
     print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Risk ban) \n [5] lvl menu (Risk ban) \n [6] Unlimited online account \n [7] 518xp full arms (Risk ban) \n [8] Exchange 10Gold to 100Silver \n [9] Unvisible NickName (Risk ban) \n [10] Full WWWWW NickName (Risk ban) \n\n>[0] Edit iP \n>[00] Edit token \n>[000] Check token \n>>[55 = exit, CTRL + Z = Crach]")
     choice = input(" >> ")
     while choice not in mn:
         print(" You're a fucking scumbag, are you even sighted?")
         time.sleep(0.5)
-        print("              >Created by t.me/HexPanel<")
+        banner()
+        print("               >Created by t.me/HexPanel<")
         print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Risk ban) \n [5] lvl menu (Risk ban) \n [6] Unlimited online account \n [7] 518xp full arms (Risk ban) \n [8] Exchange 10Gold to 100Silver \n [9] Unvisible NickName (Risk ban) \n [10] Full WWWWW NickName (Risk ban) \n\n>[0] Edit iP \n>[00] Edit token \n>[000] Check token \n>>[55 = exit, CTRL + Z = Crach]")
         choice = input(" >> ")
 
@@ -310,11 +304,11 @@ def menu(name):
 
     if choice == "55":
         banner()
-        sys.exit("          >Спасибо что выбираете НАС!<")
+        sys.exit(f"            Thank you for choosing HexPanel!")
 
-    if choice == "666":
+    if choice == "7909228":
         banner()
-        print("  Hex for 5 for 5 nights with iPaff activated")
+        print("      Hex for 5 for 5 nights with iPaff activated")
         name = "Пупсик"
         with open('config.py', 'w') as f:
             f.write(f'name = "{name}"')
@@ -322,28 +316,25 @@ def menu(name):
             f.close()
         time.sleep(2)
         menu(name)
-
 def sendhex(iP, tc, hex):
     banner()
     print(" >Set method dup \n [1] Drop 1 packet \n [2] Spam packet in server \n [0] Exit to menu")
-    sen = input(" >> ")
-    while sen != "1" and sen != "2" and sen != "0":
+    send = input(" >> ")
+    while send != "1" and send != "2" and send != "0":
         print(" You're a fucking scumbag, are you even sighted?")
         time.sleep(0.5)
         banner()
         print(" >Set method dup \n [1] Drop 1 packet \n [2] Spam packet in server \n [0] Exit to menu")
-        sen = input(" >> ")
-
-    if sen == "0":
+        send = input(" >> ")
+    if send == "0":
         menu(name)
-
-    if sen == "1":
+    if send == "1":
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.connect((iP, 2222))
         except:
             banner()
-            sys.exit(' Ошибка подключение к серверам игры! \n Попробуйте сменить айпи и повторить попытку дюпа')
+            sys.exit(' Failed connect to game sevrer! \n Please changing iP and try again')
         x = threading.Thread(target=times, daemon=True)
         x.start()
         sock.send(bytes.fromhex(tc))
@@ -356,14 +347,13 @@ def sendhex(iP, tc, hex):
         print("                Dup Used!")
         time.sleep(0.5)
         menu(name)
-
     if sen == "2":
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.connect((iP, 2222))
         except:
             banner()
-            sys.exit(' Ошибка подключение к серверам игры! \n Попробуйте сменить айпи и повторить попытку дюпа')
+            sys.exit(' Failed connect to game sevrer! \n Please changing iP and try again')
         x = threading.Thread(target=times, daemon=True)
         banner()
         print("         Dup used! [ CTRL + Z - Crach ]")
@@ -385,7 +375,6 @@ try:
 except:
     banner()
     print("             >Set server to connect<")
-    iP = "18.157.144.214"
     tc = input(" Enter token >> ")
     while tc == "" or tc == " ":
         banner()
@@ -393,12 +382,13 @@ except:
         tc = input(" Enter token >> ")
     name = input(" Enter you NickName >> ")
     time.sleep(0.3)
+    iP = "18.157.144.214"
     with open('config.py', 'w') as f:
         f.write(f'iP = "{iP}"\ntc = "{tc}"\nname = "{name}"')
         time.sleep(0.5)
         f.close()
     banner()
-    print(" There is a process to write down your token.")
-    time.sleep(3)
+    print("      There is a process to write down your token.")
+    time.sleep(1.2)
 from config import iP, tc, name
 menu(name)
