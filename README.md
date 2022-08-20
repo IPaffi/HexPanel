@@ -9,7 +9,7 @@ Okay, first let's figure out where you need to install our panel? termux? Window
 Let's start with an easy one!
 
 
-# Panel installation using Termux!
+# Panel installation using Termux (by using android)!
 Everything is simple, the most important thing is to follow the instructions clearly!
 
 Part 1. Loading
