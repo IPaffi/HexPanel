@@ -23,20 +23,18 @@ Part 2. Panel installation
 1) Open Termux
 • Drive in teams one at a time
 
-apt update
+$ apt update
 
-apt upgrade
+$ apt upgrade
 
-apt update
+$ apt update
 
-pkg upgrade
+$ pkg upgrade
 
-apt install git -y
+$ apt install git -y
 
-apt install python -y
+$ apt install python -y
 
-git clone https://github.com/IPaffi/HexPanel.git
+$ git clone https://github.com/IPaffi/HexPanel.git
 
-Part 3: Launching and Getting Started
-1) At the entrance, you will be required token and ip
-• How to get them already in my telegram t.me/CreatHex
+Part 3: Launching and Getting Started (soon...)
