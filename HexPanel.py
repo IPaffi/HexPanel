@@ -2,13 +2,28 @@ import os, socket, threading, time, sys
 from func import tt, s
 def banner():
     os.system('cls||clear')
-    print("""                      Build v2.37T0
+    try:
+        from config import game, iP, tc, name
+        print("""                      Build v2.37T1
                 HH   █H  E████EE  █   █X
                 ██   ██  ██       X█ ██
                 ███H███  ██E█      XXX
                 ██   ██  ██       ██ █X
                 H█   HH  E███EE  X█   ██
-       Dev: Creat Hex Team and Hex Panel Team
+               your eternal Creat Hex Team  
+       P███P█   A█████   ██N    █N  E███EE  █L
+       ██   ██  ██   █A  ████   ██  ██      ██
+       █P███P   ███A███  ██ █   ██  ██E█    ██
+       ██       ██   ██  ██   █ ██  ██      ██
+       P█       █A   ██  █N   █N██  E███EE  L████L""")
+    except:
+        print("""                      Build v2.37T1
+                HH   █H  E████EE  █   █X
+                ██   ██  ██       X█ ██
+                ███H███  ██E█      XXX
+                ██   ██  ██       ██ █X
+                H█   HH  E███EE  X█   ██
+               your eternal Creat Hex Team  
        P███P█   A█████   ██N    █N  E███EE  █L
        ██   ██  ██   █A  ████   ██  ██      ██
        █P███P   ███A███  ██ █   ██  ██E█    ██
@@ -24,46 +39,206 @@ def times():
         mm = s // 60 - h*0
         ss = s - h*60*60 - mm*60
         tt = (f'{h:02}:{mm:02}:{ss:02}')
-from func import mn, km, lm, omm
-def menu(name):
+def sendhex(iP, tc, hex):
+    banner()
+    print(" >Set method dup \n [1] Drop 1 packet \n [2] Spam packet in server \n [0] Exit to menu")
+    send = input(" >> ")
+    while send != "1" and send != "2" and send != "0":
+        print(" You're a fucking scumbag, are you even sighted?")
+        time.sleep(0.5)
+        banner()
+        print(" >Set method dup \n [1] Drop 1 packet \n [2] Spam packet in server \n [0] Exit to menu")
+        send = input(" >> ")
+    if send == "0" and game == "1":
+        menu(name)
+    if send == "0" and game == "2":
+        menuOTH(name)
+    if send == "1":
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.connect((iP, 2222))
+        except:
+            banner()
+            sys.exit(' Failed connect to game sevrer! \n Please changing iP and try again')
+        x = threading.Thread(target=times, daemon=True)
+        x.start()
+        sock.send(bytes.fromhex(tc))
+        sock.send(bytes.fromhex(hex))
+        sock.send(bytes.fromhex(hex))
+        sock.send(bytes.fromhex(tc))
+        sock.send(bytes.fromhex(hex))
+        sock.send(bytes.fromhex(hex))
+        sock.send(bytes.fromhex(hex))
+        banner()
+        print("                Dup Used!")
+        time.sleep(0.5)
+        if game == "1":
+            menu(name)
+        if game == "2":
+            menuOTH(name)
+    if sen == "2":
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.connect((iP, 2222))
+        except:
+            banner()
+            sys.exit(' Failed connect to game sevrer! \n Please changing iP and try again')
+        x = threading.Thread(target=times, daemon=True)
+        banner()
+        print("         Dup used! [ CTRL + Z - Crach ]")
+        time.sleep(0.5)
+        i = 0
+        x.start()
+        while 1:
+            try:
+                i += 1
+                time.sleep(0.01)
+                sock.send(bytes.fromhex(tc))
+                for _ in range(2):
+                   sock.send(bytes.fromhex(hex))
+                print(f' {i} - Packets |  {tt}  |  [ CTRL + Z - Crach ]')
+            except:
+                sock.connect((iP, 2222))
+def menuOTH(name):
+    from func import mno
     global s, iP, tc
     banner()
     print(f'                Welcome to Panel, {name}!')
-    time.sleep(1.2)
+    time.sleep(0.7)
     banner()
     print("               >Created by t.me/HexPanel<")
-    print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Risk ban) \n [5] lvl menu (Risk ban) \n [6] Unlimited online account \n [7] 518xp full arms (Risk ban) \n [8] Exchange 10Gold to 100Silver \n [9] Unvisible NickName (Risk ban) \n [10] Full WWWWW NickName (Risk ban) \n\n>[0] Edit iP \n>[00] Edit token \n>[000] Check token \n>>[55 = exit, CTRL + Z = Crach]")
-    choice = input(" >> ")
-    while choice not in mn:
+    print(" [1] Сustom hex \n\n>[0] Edit iP \n>[00] Edit token \n>[000] Changing game \n>>[55 = exit, CTRL + Z = Crach]")
+    choiceo = input(" >> ")
+    while choiceo not in mno:
         print(" You're a fucking scumbag, are you even sighted?")
         time.sleep(0.5)
         banner()
         print("               >Created by t.me/HexPanel<")
-        print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Risk ban) \n [5] lvl menu (Risk ban) \n [6] Unlimited online account \n [7] 518xp full arms (Risk ban) \n [8] Exchange 10Gold to 100Silver \n [9] Unvisible NickName (Risk ban) \n [10] Full WWWWW NickName (Risk ban) \n\n>[0] Edit iP \n>[00] Edit token \n>[000] Check token \n>>[55 = exit, CTRL + Z = Crach]")
-        choice = input(" >> ")
+        print(" [1] Сustom hex \n\n>[0] Edit iP \n>[00] Edit token \n>[000] Changing game \n>>[55 = exit, CTRL + Z = Crach]")
+        choiceo = input(" >> ")
 
-    if choice == "0":
+    if choiceo == "0":
         banner()
         print("                  >Set new cfg<")
-        print(f'           Config iP - {iP}')
+        print(f'             Config iP - {iP}')
         print("   If you do not yet have an iP, then it is standard")
         iP = input(" Enter new iP >> ")
         with open('config.py', 'w') as f:pass
         with open('config.py', 'w') as f:
             f.write(f'iP = "{iP}"')
             f.close()
-        from config import iP, tc, name
-        menu(name)
+        from config import game, iP, tc, name
+        menuOTH(name)
 
-    if choice == "00":
+    if choiceo == "00":
         banner()
-        print("              >Set new cfg<")
-        tc = input("Enter new token >> ")
+        print("                   >Set new cfg<")
+        tc = input(" Enter new token >> ")
         with open('config.py', 'w') as f:pass
         with open('config.py', 'w') as f:
             f.write(f'tc = "{tc}"')
             f.close()
-        from config import iP, tc, name
+        from config import game, iP, tc, name
+        menuOTH(name)
+
+    if choiceo == "000":
+        banner()
+        print("              >Changing your game<")
+        tc = input(" Enter token >> ")
+        while tc == "" or tc == " ":
+            banner()
+            print("             >Changing your game<")
+            print("     >Don't enter a space, it doesn't work here<")
+            tc = input(" Enter token >> ")
+        name = input(" Enter you NickName >> ")
+        time.sleep(0.2)
+        iP = "18.157.144.214"
+        with open('config.py', 'w') as f:
+            f.write(f'game = "{1}"\niP = "{iP}"\ntc = "{tc}"\nname = "{name}"')
+            time.sleep(0.2)
+            f.close()
+        banner()
+        print("          >Save server and game to connect..<")
+        print("      There is a process to write down yout data.")
+        time.sleep(1.2)
+        sys.exit(" Restart Panel and use)")
+
+    if choiceo == "55":
+        banner()
+        sys.exit(f"            Thank you for choosing HexPanel!")
+
+    if choiceo == "1":
+        banner()
+        print(">Only your account is responsible for other people's hexes<")
+        hex = input(" Enter hex >> ")        
+        sendhex(iP, tc, hex)
+
+import os, socket, threading, time, sys
+from func import tt, s
+def banner():
+    os.system('cls||clear')
+    print("""                      Build v2.37T1
+                HH   █H  E████EE  █   █X
+                ██   ██  ██       X█ ██
+                ███H███  ██E█      XXX
+                ██   ██  ██       ██ █X
+                H█   HH  E███EE  X█   ██
+               your eternal Creat Hex Team  
+       P███P█   A█████   ██N    █N  E███EE  █L
+       ██   ██  ██   █A  ████   ██  ██      ██
+       █P███P   ███A███  ██ █   ██  ██E█    ██
+       ██       ██   ██  ██   █ ██  ██      ██
+       P█       █A   ██  █N   █N██  E███EE  L████L""")
+def times():
+    global s
+    global tt
+    while 1:
+        time.sleep(1)
+        s += 1
+        h = s // 60 // 60
+        mm = s // 60 - h*0
+        ss = s - h*60*60 - mm*60
+        tt = (f'{h:02}:{mm:02}:{ss:02}')
+def menu(name):
+    from func import mn, km, lm, omm
+    global s, iP, tc
+    banner()
+    print(f'                Welcome to Panel, {name}!')
+    time.sleep(0.7)
+    banner()
+    print("               >Created by t.me/HexPanel<")
+    print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Risk ban) \n [5] lvl menu (Risk ban) \n [6] Unlimited online account \n [7] 518xp full arms (Risk ban) \n [8] Exchange 10Gold to 100Silver \n [9] Unvisible NickName (Risk ban) \n [10] Full WWWWW NickName (Risk ban) \n\n>[0] Edit iP \n>[00] Edit token \n>[000] Check token\n>[0000] Changing game \n>>[55 = exit, CTRL + Z = Crach]")
+    choice = input(" >> ")
+    while choice not in mn:
+        print(" You're a fucking scumbag, are you even sighted?")
+        time.sleep(0.5)
+        banner()
+        print("               >Created by t.me/HexPanel<")
+        print(" [1] Сustom hex \n [2] Ban wish 1005 \n [3] Medal 2021 menu \n [4] KD menu (Risk ban) \n [5] lvl menu (Risk ban) \n [6] Unlimited online account \n [7] 518xp full arms (Risk ban) \n [8] Exchange 10Gold to 100Silver \n [9] Unvisible NickName (Risk ban) \n [10] Full WWWWW NickName (Risk ban) \n\n>[0] Edit iP \n>[00] Edit token \n>[000] Check token\n>[0000] Changing game \n>>[55 = exit, CTRL + Z = Crach]")
+        choice = input(" >> ")
+
+    if choice == "0":
+        banner()
+        print("                  >Set new cfg<")
+        print(f'             Config iP - {iP}')
+        print("   If you do not yet have an iP, then it is standard")
+        iP = input(" Enter new iP >> ")
+        with open('config.py', 'w') as f:pass
+        with open('config.py', 'w') as f:
+            f.write(f'iP = "{iP}"')
+            f.close()
+        from config import game, iP, tc, name
+        menu(name)
+
+    if choice == "00":
+        banner()
+        print("                   >Set new cfg<")
+        tc = input(" Enter new token >> ")
+        with open('config.py', 'w') as f:pass
+        with open('config.py', 'w') as f:
+            f.write(f'tc = "{tc}"')
+            f.close()
+        from config import game, iP, tc, name
         menu(name)
 
     if choice == "000":
@@ -78,6 +253,27 @@ def menu(name):
             print("   Invalid token, pls edit token and use panel!")
             time.sleep(2)
             menu(name)
+    if choice == "0000":
+        banner()
+        print("                 >Changing your game<")
+        tc = input(" Enter token >> ")
+        while tc == "" or tc == " ":
+            banner()
+            print("                 >Changing your game<")
+            print("     >Don't enter a space, it doesn't work here<")
+            tc = input(" Enter token >> ")
+        iP = input(" Enter iP your Game >> ")
+        name = input(" Enter you NickName >> ")
+        time.sleep(0.2)
+        with open('config.py', 'w') as f:
+            f.write(f'game = "{2}"\niP = "{iP}"\ntc = "{tc}"\nname = "{name}"')
+            time.sleep(0.2)
+            f.close()
+        banner()
+        print("          >Save server and game to connect..<")
+        print("      There is a process to write down yout data.")
+        time.sleep(1.2)
+        sys.exit(" Restart Panel and use)")
 
     if choice == "1":
         banner()
@@ -305,90 +501,58 @@ def menu(name):
     if choice == "55":
         banner()
         sys.exit(f"            Thank you for choosing HexPanel!")
-
-    if choice == "7909228":
-        banner()
-        print("      Hex for 5 for 5 nights with iPaff activated")
-        name = "Пупсик"
-        with open('config.py', 'w') as f:
-            f.write(f'name = "{name}"')
-            time.sleep(0.5)
-            f.close()
-        time.sleep(2)
-        menu(name)
-def sendhex(iP, tc, hex):
-    banner()
-    print(" >Set method dup \n [1] Drop 1 packet \n [2] Spam packet in server \n [0] Exit to menu")
-    send = input(" >> ")
-    while send != "1" and send != "2" and send != "0":
-        print(" You're a fucking scumbag, are you even sighted?")
-        time.sleep(0.5)
-        banner()
-        print(" >Set method dup \n [1] Drop 1 packet \n [2] Spam packet in server \n [0] Exit to menu")
-        send = input(" >> ")
-    if send == "0":
-        menu(name)
-    if send == "1":
-        try:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.connect((iP, 2222))
-        except:
-            banner()
-            sys.exit(' Failed connect to game sevrer! \n Please changing iP and try again')
-        x = threading.Thread(target=times, daemon=True)
-        x.start()
-        sock.send(bytes.fromhex(tc))
-        sock.send(bytes.fromhex(hex))
-        sock.send(bytes.fromhex(hex))
-        sock.send(bytes.fromhex(tc))
-        sock.send(bytes.fromhex(hex))
-        sock.send(bytes.fromhex(hex))
-        banner()
-        print("                Dup Used!")
-        time.sleep(0.5)
-        menu(name)
-    if sen == "2":
-        try:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.connect((iP, 2222))
-        except:
-            banner()
-            sys.exit(' Failed connect to game sevrer! \n Please changing iP and try again')
-        x = threading.Thread(target=times, daemon=True)
-        banner()
-        print("         Dup used! [ CTRL + Z - Crach ]")
-        time.sleep(0.5)
-        i = 0
-        x.start()
-        while 1:
-            try:
-                i += 1
-                time.sleep(0.01)
-                sock.send(bytes.fromhex(tc))
-                for _ in range(2):
-                   sock.send(bytes.fromhex(hex))
-                print(f' {i} - Packets |  {tt}  |  [ CTRL + Z - Crach ]')
-            except:
-                sock.connect((iP, 2222))
-try:
-    from config import iP, tc, name
+try :
+    from config import game, iP, tc, name
 except:
     banner()
-    print("             >Set server to connect<")
-    tc = input(" Enter token >> ")
-    while tc == "" or tc == " ":
+    game = input("what game are you interested in dupes for? \n [1] so 2 \n [2] other \n >> ")
+    if game == "1":
         banner()
-        print("     >Don't enter a space, it doesn't work here<")
+        print("             >Set server to connect<")
         tc = input(" Enter token >> ")
-    name = input(" Enter you NickName >> ")
-    time.sleep(0.3)
-    iP = "18.157.144.214"
-    with open('config.py', 'w') as f:
-        f.write(f'iP = "{iP}"\ntc = "{tc}"\nname = "{name}"')
-        time.sleep(0.5)
-        f.close()
-    banner()
-    print("      There is a process to write down your token.")
-    time.sleep(1.2)
-from config import iP, tc, name
-menu(name)
+        while tc == "" or tc == " ":
+            banner()
+            print("             >Set server to connect<")
+            print("     >Don't enter a space, it doesn't work here<")
+            tc = input(" Enter token >> ")
+        name = input(" Enter you NickName >> ")
+        time.sleep(0.2)
+        iP = "18.157.144.214"
+        with open('config.py', 'w') as f:
+            f.write(f'game = "{game}"\niP = "{iP}"\ntc = "{tc}"\nname = "{name}"')
+            time.sleep(0.2)
+            f.close()
+        banner()
+        print("            >Save server to connect..<")
+        print("      There is a process to write down yout data.")
+        time.sleep(1.2)
+        menu(name)
+    if game == "2":
+        try:
+            from config import game, iP, tc, name
+        except:
+            banner()
+            print("             >Set server to connect<")
+            tc = input(" Enter token >> ")
+            while tc == "" or tc == " ":
+                banner()
+                rint("             >Set server to connect<")
+                print("     >Don't enter a space, it doesn't work here<")
+                tc = input(" Enter token >> ")
+            iP = input(" Enter iP your Game >> ")
+            name = input(" Enter you NickName >> ")
+            time.sleep(0.2)
+            with open('config.py', 'w') as f:
+                f.write(f'game = "{game}"\niP = "{iP}"\ntc = "{tc}"\nname = "{name}"')
+                time.sleep(0.2)
+                f.close()
+            banner()
+            print("            >Save server to connect..<")
+            print("      There is a process to write down yout data.")
+            time.sleep(1.2)
+            menuOTH(name)
+from config import game
+if game == "1":
+    menu(name)
+if game == "2":
+    menuOTH(name)
