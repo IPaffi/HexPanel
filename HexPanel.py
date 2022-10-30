@@ -2,7 +2,7 @@ import os, socket, threading, time, sys
 from func import tt, s
 def banner():
     os.system('cls||clear')
-    print("""                      Build v2.37T1
+    print("""                      Build v2.37T2
                 HH   █H  E████EE  █   █X
                 ██   ██  ██       X█ ██
                 ███H███  ██E█      XXX
