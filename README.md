@@ -9,32 +9,38 @@ Okay, first let's figure out where you need to install our panel? termux? Window
 Let's start with an easy one!
 
 
-# Panel installation using Termux (by using android)!
-Everything is simple, the most important thing is to follow the instructions clearly!
-
+# How to launch HexPanel in Termux
 Part 1. Loading
-1) Go to the browser.
-• Not in Play market
-2) We drive in the search line Termux f-droid
-• Download exclusively from the site f-droid
-3) Click install
+-Go to the browser.
+ •Not in Play market
+-We drive in the search line Termux f-droid
+ •Download exclusively from the site f-droid
+-Click install
 
-Part 2. Panel installation
-1) Open Termux
-• Drive in teams one at a time
-
+Part 2. Installation
+-Open Termux
+• Alternately enter the commands
 $ apt update
-
 $ apt upgrade
-
-$ apt update
-
+$ pkg update
 $ pkg upgrade
-
 $ apt install git -y
-
-$ apt install python -y
-
+$ apt install python3 -y
 $ git clone https://github.com/IPaffi/HexPanel.git
 
-Part 3: Launching and Getting Started (soon...)
+Part 3. Launch:
+$ cd HexPanel
+$ python HexPanel
+
+# How to launch HexPanel in Windows.
+
+Part 1. Installation:
+-Install GiT from the official GitHub in Batch mode
+-Alternately enter the commands:
+$ git clone https://github.com/IPaffi/HexPanel.git
+Part 2. Launch:
+$ cd HexPanel
+$ python Hex Panel
+
+# How to launch HexPanel in Linux.
+-Soon..
