@@ -1,5 +1,5 @@
 # About a HexPanel
-           You have reached the github branch of the CreatHex&HexPanel development team project! Here we improve the panel together with you. The panel receives a stable update every 6 months, follow the development of the HexPanel project. Don't forget to subscribe to our telegram channels, where we will all be glad to see you t.me/CreatHex and t.me/HexPanel. Okay, first let's figure out where to install our panel? Termux? Window? Or even a Linux terminal? let's start
+   You have reached the github branch of the CreatHex&HexPanel development team project! Here we improve the panel together with you. The panel receives a stable update every 6 months, follow the development of the HexPanel project. Don't forget to subscribe to our telegram channels, where we will all be glad to see you t.me/CreatHex and t.me/HexPanel. Okay, first let's figure out where to install our panel? Termux? Window? Or even a Linux terminal? let's start
 
 # Launch HexPanel in Termux
 Part 1. Loading:
