@@ -1,34 +1,24 @@
-# HexPanel
-Hello!
-You've landed on a project branch of the CreatHex&HexPanel development team!
-Here we are improving the panel together with you, making it closer and closer to the ideal with each update.
-The panel receives a stable update once a week, follow the development of the HexPanel project so as not to miss interesting updates, innovations, as well as a lot of interesting things!
-Don't forget to subscribe to our telegram channel where we will all be glad to see you t.me/CreatHex! Chat can help you with your problem or answer your question!
-# How to install the panel?
-Okay, first let's figure out where you need to install our panel? termux? Windows? Or even Linux Terminal?
-Let's start with an easy one!
+# About a HexPanel
+           You have reached the github branch of the CreatHex&HexPanel development team project! Here we improve the panel together with you. The panel receives a stable update every 6 months, follow the development of the HexPanel project. Don't forget to subscribe to our telegram channels, where we will all be glad to see you t.me/CreatHex and t.me/HexPanel. Okay, first let's figure out where to install our panel? Termux? Window? Or even a Linux terminal? let's start
 
+# Launch HexPanel in Termux
+Part 1. Loading:
 
-# How to launch HexPanel in Termux
-—Part 1. Loading:
+ • Go to the browser.
 
--Go to the browser.
+ • Not in Play market
 
- •Not in Play market
+ • We drive in the search line Termux f-droid
 
--We drive in the search line Termux f-droid
+ • Download exclusively from the site f-droid
 
- •Download exclusively from the site f-droid
-
--Click install
+ • Click install
 
 
 
-—Part 2. Installation:
+Part 2. Installation:
 
--Open Termux
-
-• Alternately enter the commands:
+• Open Termux, alternately enter the commands:
 
 $ apt update
 
@@ -46,29 +36,28 @@ $ git clone https://github.com/IPaffi/HexPanel.git
 
 
 
-—Part 3. Launch:
+Part 3. Launch:
 
 $ cd HexPanel
 
 $ python HexPanel
 
-# How to launch HexPanel in Windows.
 
-—Part 1. Installation:
+# Launch HexPanel in Windows.
 
--Install GiT from the official GitHub in Batch mode
+Part 1. Installation:
 
--Alternately enter the commands:
+• Install GiT from the official GitHub in Batch mode, enter the command:
 
 $ git clone https://github.com/IPaffi/HexPanel.git
 
 
 
-—Part 2. Launch:
+Part 2. Launch:
 
 $ cd HexPanel
 
-$ python Hex Panel
+$ python HexPanel
 
-# How to launch HexPanel in Linux.
+# Launch HexPanel in Linux.
 -Soon..
