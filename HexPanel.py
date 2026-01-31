@@ -11,7 +11,7 @@ s = 0
 send_options = ["1", "2", "3", "0"]
 menu_options = ["1", "2", "0", "00", "55"]
 ip_status = {"ip": "not set", "reachable": False, "last_check": 0}
-
+CURRENT_VERSION = "3.0-beta.1"
 def time_tracker():
     global s, tt
     while True:
