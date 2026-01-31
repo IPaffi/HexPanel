@@ -10,7 +10,7 @@ tt = '00:00:00'
 s = 0
 send_options = ["1", "2", "3", "0"]
 menu_options = ["1", "2", "0", "00", "55", "99"]
-CURRENT_VERSION = "3.0-alpha.2"
+CURRENT_VERSION = "3.0-rc"
 GH_RAW_URL = "https://raw.githubusercontent.com/IPaffi/HexPanel/refs/heads/main/HexPanel.py"
 SCRIPT_FILE = Path(__file__).name
 FULL_RAW_URL = GH_RAW_URL
@@ -19,6 +19,141 @@ ip_status = {
     "reachable": False,
     "last_check": 0
 }
+def time_tracker():
+    global s, tt
+    while True:
+        time.sleep(1)
+        s += 1
+        h = s // 3600
+        m = (s % 3600) // 60
+        sec = s % 60
+        tt = f'{h:02}:{m:02}:{sec:02}'
+threading.Thread(target=time_tracker, daemon=True).start()
+def start_ip_monitor(ip: str):
+    def monitor():
+        while True:
+            if check_ip(ip):
+                ip_status.update({
+                    "reachable": is_ip_reachable(ip, myport),
+                    "ip": ip,
+                    "last_check": time.time()
+                })
+            time.sleep(15)
+    t = threading.Thread(target=monitor, daemon=True)
+    t.start()
+
+def handle_client(client_socket, addr):
+    print(f'Client connected: {addr}')
+    try:
+        while True:
+            data = client_socket.recv(1024)
+            if not data:
+                break
+            print(f'Received from {addr}: {data.decode()}')
+            client_socket.sendall(f"Echo: {data.decode()}".encode())
+    except:
+        pass
+    finally:
+        client_socket.close()
+        print(f'Client {addr} disconnected')
+
+def server():
+    global stop_server
+    banner()
+    def command_input():
+        global stop_server
+        while True:
+            cmd = input("Enter 'stop' for back to main menu: ")
+            if cmd.strip().lower() == 'stop':
+                stop_server = True
+                break
+    host_input = input("Enter host (Default 0.0.0.0): ").strip()
+    HOST = host_input if host_input else '0.0.0.0'
+    port_input = input("Enter port (Default 12345): ").strip()
+    try:
+        PORT = int(port_input) if port_input else 12345
+    except ValueError:
+        PORT = 12345
+    banner()
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind((HOST, PORT))
+        s.listen()
+        print(f'The server is running and listening. {HOST}:{PORT}')
+        threading.Thread(target=command_input, daemon=True).start()
+        while not stop_server:
+            try:
+                s.settimeout(1.0)
+                client_sock, addr = s.accept()
+                threading.Thread(target=handle_client, args=(client_sock, addr), daemon=True).start()
+            except socket.timeout:
+                continue
+        banner()
+        print("Stopping server...")
+        time.sleep(2)
+        menu(name)
+
+def send_hex(ip, tc, hex_data, myport):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.connect((ip, int(myport)))
+    banner()
+    choiceH = input(" [1] Custom spam \n [2] Drop 1 packet \n [3] Spam packets \n\n [0] Exit to menu\n >> ")
+    while choiceH not in send_options:
+        banner()
+        choiceH = input(" [1] Custom spam \n [2] Drop 1 packet \n [3] Spam packets \n\n [0] Exit to menu\n Enter exact number >> ")
+
+    if choiceH == "0":
+        time.sleep(0.3)
+        menu(name)
+
+    if choiceH == "1":
+        banner()
+        print(" You set custom spam")
+        num_per_token = int(input("Number of packets per token >> "))
+        total_packets = int(input("Total number of sending packets >> "))
+        for i in range(total_packets):
+            try:
+                sock.send(bytes.fromhex(tc))
+                for _ in range(num_per_token):
+                    sock.send(bytes.fromhex(hex_data))
+                print(f"{i+1} packets sent | {tt}")
+            except:
+                sock.close()
+                sock.connect((ip, myport))
+                menu(name)
+        print("\n\n Closing connection..")
+        time.sleep(3)
+        banner()
+        print("> Spam finished")
+        time.sleep(3)
+        menu(name)
+
+    if choiceH == "2":
+        sock.send(bytes.fromhex(tc))
+        sock.send(bytes.fromhex(hex_data))
+        banner()
+        print("> Packet sent")
+        time.sleep(1)
+        menu(name)
+
+    if choiceH == "3":
+        i = 0
+        try:
+            while True:
+                i += 1
+                sock.send(bytes.fromhex(tc))
+                sock.send(bytes.fromhex(hex_data))
+                print(f"{i} packets sent | {tt}\n Press Ctrl+C to back in menu")
+                time.sleep(0.05)
+        except KeyboardInterrupt:
+            print("\nStopped. Returning to menu...")
+            time.sleep(2)
+        except Exception as e:
+            print(f"Error: {e}. Reconnecting socket...")
+            sock.close()
+            sock.connect((ip, myport))
+        finally:
+            time.sleep(2)
+            menu(name)
 
 def parse_version(ver: str):
     ver = ver.lower().replace('v', '')
@@ -51,14 +186,9 @@ def parse_version(ver: str):
 def infover():
     banner()
     ver_badge = display_version_badge(CURRENT_VERSION)
-    print(f"\n{Fore.CYAN}╔════════════════════════════════════════╗")
-    print(f"║        H E X P A N E L  I N F O        ║")
-    print(f"╚════════════════════════════════════════╝{Style.RESET_ALL}")
-    print(f"Type:       {get_version_type(CURRENT_VERSION)}")
-    print(f"Version:    {Fore.CYAN}v{CURRENT_VERSION}{Style.RESET_ALL}")
-    print(f"GitHub:     https://github.com/IPaffi/HexPanel")
+    print(f"""\n{Fore.CYAN}╔════════════════════════════════════════╗\n║        H E X P A N E L  I N F O        ║\n╚════════════════════════════════════════╝{Style.RESET_ALL}\nType:       {get_version_type(CURRENT_VERSION)}\nVersion:    {Fore.CYAN}v{CURRENT_VERSION}{Style.RESET_ALL}\nGitHub:     https://github.com/IPaffi/HexPanel""")
     if get_version_type(CURRENT_VERSION) in ["Alpha", "Beta"]:
-        print(f"\n{Fore.YELLOW}Note: This is a {get_version_type(CURRENT_VERSION)} version")
+        print(f"{Fore.YELLOW}Note: This is a {get_version_type(CURRENT_VERSION)} version")
         print("Some features may be unstable or incomplete")
     chup = input(f'\nCheck for updates?\n [1] Yes \n [2] No, Back to menu \n >> ')
     if chup == "1":
@@ -66,11 +196,11 @@ def infover():
     else:
         return
 
-def is_ip_reachable(ip: str, port=2222, timeout=2):
+def is_ip_reachable(ip: str, port, timeout=2):
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(timeout)
-        sock.connect((ip, port))
+        sock.connect((ip, myport))
         sock.close()
         return True
     except socket.timeout:
@@ -86,7 +216,7 @@ def start_ip_monitor(ip: str):
     def monitor():
         while True:
             ip_status.update({
-                "reachable": is_ip_reachable(ip),
+                "reachable": is_ip_reachable(ip, myport),
                 "ip": ip,
                 "last_check": time.time()
             })
@@ -311,6 +441,7 @@ def hello():
     menu(name)
 
 def current(myport):
+    from config import ip, tc, name, myport
     ip = ip_status.get("ip", "not set")
     reachable = ip_status.get("reachable", False)
     last_check = ip_status.get("last_check", 0)
@@ -331,7 +462,7 @@ def current(myport):
         status = "online" if reachable else "offline"
     ver_badge = display_version_badge(CURRENT_VERSION)
     print(f'{Style.RESET_ALL}   Current IP: {ip_color}{ip}:{myport}{Style.RESET_ALL} [{status}] (checked {time_str})')
-    print(f'{Style.RESET_ALL}   Version: {ver_badge} {Fore.CYAN}v{CURRENT_VERSION}{Style.RESET_ALL}')
+    print(f'{Style.RESET_ALL}              Version: {Fore.CYAN}v{CURRENT_VERSION} {ver_badge}{Style.RESET_ALL}')
 
 def apply_update(new_code):
     try:
@@ -361,10 +492,7 @@ def apply_update(new_code):
 def update_flow():
     banner()
     current_badge = display_version_badge(CURRENT_VERSION)
-    print(f"""{Fore.CYAN}  ╔══════════════════════════════════════════════════╗
-  ║          H E X P A N E L  U P D A T E R          ║
-  ╚══════════════════════════════════════════════════╝{Style.RESET_ALL}
-Now:{current_badge} {Fore.CYAN}v{CURRENT_VERSION}{Style.RESET_ALL}""")
+    print(f"""{Fore.CYAN}  ╔══════════════════════════════════════════════════╗\n  ║          H E X P A N E L  U P D A T E R          ║\n  ╚══════════════════════════════════════════════════╝{Style.RESET_ALL}\nNow:{current_badge} {Fore.CYAN}v{CURRENT_VERSION}{Style.RESET_ALL}""")
     update_available, remote_ver, new_code, remote_type = check_updates(silent=False)
     if not update_available:
         print(f"\n{Fore.YELLOW} No updates found, you are using the latest version!{Style.RESET_ALL}")
@@ -381,9 +509,8 @@ Now:{current_badge} {Fore.CYAN}v{CURRENT_VERSION}{Style.RESET_ALL}""")
                 banner()
                 print(f"\n{Fore.GREEN}[✓] Update Successful!{Style.RESET_ALL}")
                 print(f"{Fore.YELLOW}[*] Reboot HexPanel...{Style.RESET_ALL}")
-                time.sleep(3)
-                python = sys.executable
-                os.execl(python, python, *sys.argv)
+                time.sleep(2)
+                sys.exit(0)
             break
         elif choice == "2":
             banner()
@@ -392,6 +519,7 @@ Now:{current_badge} {Fore.CYAN}v{CURRENT_VERSION}{Style.RESET_ALL}""")
             break
         else:
             print(f"{Fore.RED}[!] Please enter the correct command{Style.RESET_ALL}")
+            time.sleep(2)
     return True
 
 def auto_check_update_on_start():
@@ -444,13 +572,73 @@ def menu(name):
         print("            Thank you for choosing HexPanel!")
         sys.exit(0)
 
+    if choice == "0":
+        banner()
+        ip_new = input("Enter new IP >> ")
+        while not check_ip(ip_new):
+            banner()
+            ip_new = input("Invalid IP, enter again >> ")
+        ip_status["ip"] = ip_new
+        start_ip_monitor(ip_new)
+        banner()
+        print("> Enter port")
+        print("> Default = 2222")
+        while True:
+            banner()
+            print("> Enter port")
+            print("> Default = 2222")
+            myport = input(">> ")
+            if myport.isdigit() and len(myport) == 4 or 5:
+                banner()
+                print(f" You write: {myport}")
+                time.sleep(1)
+                break
+            banner()
+            print(" Error, the entered number consists of more than 4 digits.")
+            time.sleep(2)
+        with open("config.py", "w") as f:
+            f.write(f'ip = "{ip}"\ntc = "{tc}"\nname = "{name}"\nmyport = "{myport}"')
+        banner()
+        print(f"> New IP set: {ip_new}:{myport}")
+        time.sleep(2)
+        from config import ip, tc, name, myport
+        menu(name)
+
+    if choice == "00":
+        banner()
+        tcn = input("Enter new token >> ").strip()
+        while not tc_new:
+            banner()
+            tcn = input("Token cannot be empty >> ")
+        with open("config.py", "w") as f:
+            f.write(f'ip = "{ip}"\ntc = "{tcn}"\nname = "{name}"\nmyport = "{myport}"')
+            time.sleep(1)
+        banner()
+        print(f"> New token set: {tc}")
+        menu(name)
+
+    if choice == "1":
+        from config import ip, tc, name, myport
+        from config import tc
+        if tc == "none":
+            banner()
+            print("> Token not set, returning to menu...")
+            time.sleep(1)
+            menu(name)
+        else:
+            banner()
+            hex_data = input(" Enter hex >> ").strip()
+            send_hex(ip, tc, hex_data, myport)
+            menu(name)
+
+    if choice == "2":
+        if __name__ == "__main__":
+            server()
+        menu(name)
+
     if choice == "99":
         infover()
         menu(name)
-
-    print(f"\n{Fore.YELLOW}Функционал в разработке...{Style.RESET_ALL}")
-    time.sleep(2)
-    menu(name)
 
 if __name__ == "__main__":
     try:
