@@ -32,6 +32,8 @@ $ apt install python3 -y
 
 $ pip install colorama
 
+$ pip install packaging
+
 $ git clone https://github.com/IPaffi/HexPanel.git
 
 
